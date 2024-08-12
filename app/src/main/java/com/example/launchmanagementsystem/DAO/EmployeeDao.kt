@@ -11,5 +11,14 @@ import com.example.launchmanagementsystem.Model.Employee
 interface EmployeeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(employee: Employee)
+
+    @Query("SELECT * FROM employees WHERE id = :id")
+    suspend fun getEmployeeById(id: Long): Employee?
+
+    @Query("SELECT * FROM employees")
+    fun getAllEmployees(): LiveData<List<Employee>>
+
+    @Query("SELECT * FROM employees WHERE isPresent = 1")
+    fun getPresentEmployees(): LiveData<List<Employee>>
 }
 

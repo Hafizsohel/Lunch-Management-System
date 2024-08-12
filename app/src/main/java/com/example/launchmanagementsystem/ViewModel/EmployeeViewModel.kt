@@ -1,19 +1,18 @@
 package com.example.launchmanagementsystem.ViewModel
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.launchmanagementsystem.Database.EmployeeDatabase
 import com.example.launchmanagementsystem.Model.Employee
 import com.example.launchmanagementsystem.Repository.EmployeeRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+class EmployeeViewModel(application: Application) : AndroidViewModel(application) {
 
-private const val TAG = "EmployeeViewModel"
-class EmployeeViewModel(private val repository: EmployeeRepository) : ViewModel() {
+    private val repository: EmployeeRepository = EmployeeRepository(EmployeeDatabase.getDatabase(application).employeeDao())
 
-    fun addEmployee(employee: Employee) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.insert(employee)
-        }
+    fun insertEmployee(name: String) = viewModelScope.launch {
+        val newEmployee = Employee(name = name)
+        repository.insert(newEmployee)
     }
 }

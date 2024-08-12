@@ -1,6 +1,8 @@
 package com.example.launchmanagementsystem.Fragments
 
+
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.launchmanagementsystem.Model.Employee
 import com.example.launchmanagementsystem.ViewModel.EmployeeViewModel
 import com.example.launchmanagementsystem.databinding.FragmentCustomDialogBinding
+
 
 class CustomDialogFragment : DialogFragment() {
     private lateinit var employeeViewModel: EmployeeViewModel
@@ -28,7 +31,7 @@ class CustomDialogFragment : DialogFragment() {
             val employeeName = binding.fullEmployeeName.text.toString()
             if (employeeName.isNotEmpty()) {
                 val employee = Employee(name = employeeName)
-                employeeViewModel.addEmployee(employee)
+                employeeViewModel.insertEmployee(employee.name)
                 Toast.makeText(requireContext(), "Successfully Added", Toast.LENGTH_LONG).show()
                 dismiss()
             } else {
