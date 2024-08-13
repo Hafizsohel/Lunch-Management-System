@@ -5,16 +5,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.launchmanagementsystem.Model.Employee
 import com.example.launchmanagementsystem.R
+import com.example.launchmanagementsystem.ViewModel.EmployeeViewModel
 
-class EmployeeListAdapter : ListAdapter<Employee, EmployeeListAdapter.EmployeeViewHolder>(EmployeeComparator()) {
+private const val TAG = "EmployeeAdapter"
 
+class EmployeeListAdapter(
+    private val employeeViewModel: EmployeeViewModel
+) : RecyclerView.Adapter<EmployeeListAdapter.EmployeeViewHolder>() {
     private var employees = mutableListOf<Employee>()
-
+    inner class EmployeeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val employeeName: TextView = itemView.findViewById(R.id.employeeName)
+        val serialNoText: TextView = itemView.findViewById(R.id.serialNoText)
+        val checkPresent: CheckBox = itemView.findViewById(R.id.checkPresent)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.employee_item_view, parent, false)
@@ -22,28 +28,19 @@ class EmployeeListAdapter : ListAdapter<Employee, EmployeeListAdapter.EmployeeVi
     }
 
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
-        val current = getItem(position)
         val currentEmployee = employees[position]
         holder.serialNoText.text = "${position + 1}."
         holder.employeeName.text = currentEmployee.name
-        holder.checkPresent.setOnClickListener{}
-    }
+        holder.checkPresent.isChecked = currentEmployee.isPresent
 
-    class EmployeeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val employeeName: TextView = itemView.findViewById(R.id.employeeName)
-        val serialNoText: TextView = itemView.findViewById(R.id.serialNoText)
-        val checkPresent: CheckBox = itemView.findViewById(R.id.checkPresent)
-    }
-
-    class EmployeeComparator : DiffUtil.ItemCallback<Employee>() {
-        override fun areItemsTheSame(oldItem: Employee, newItem: Employee): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Employee, newItem: Employee): Boolean {
-            return oldItem == newItem
+        holder.checkPresent.setOnClickListener {
+            val isChecked = holder.checkPresent.isChecked
+            val updatedEmployee = currentEmployee.copy(isPresent = isChecked)
+            employeeViewModel.addEmployee(updatedEmployee)
         }
     }
+    override fun getItemCount(): Int = employees.size
+
     fun setEmployees(employees: List<Employee>) {
         this.employees = employees.toMutableList()
         notifyDataSetChanged()

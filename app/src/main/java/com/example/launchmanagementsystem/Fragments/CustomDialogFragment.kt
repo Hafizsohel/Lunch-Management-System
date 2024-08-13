@@ -2,7 +2,6 @@ package com.example.launchmanagementsystem.Fragments
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +30,7 @@ class CustomDialogFragment : DialogFragment() {
             val employeeName = binding.fullEmployeeName.text.toString()
             if (employeeName.isNotEmpty()) {
                 val employee = Employee(name = employeeName)
-                employeeViewModel.insertEmployee(employee.name)
+                employeeViewModel.addEmployee(employee)
                 Toast.makeText(requireContext(), "Successfully Added", Toast.LENGTH_LONG).show()
                 dismiss()
             } else {

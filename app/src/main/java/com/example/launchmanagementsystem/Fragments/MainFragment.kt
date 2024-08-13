@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.launchmanagementsystem.R
 import com.example.launchmanagementsystem.ViewModel.EmployeeViewModel
 import com.example.launchmanagementsystem.databinding.FragmentMainBinding
 
@@ -28,6 +29,10 @@ class MainFragment : Fragment() {
         }
 
         binding.btnToday.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.FrameLayoutID, EmployeeListFragment())
+                .addToBackStack(null)
+                .commit()
 
         }
         return binding.root

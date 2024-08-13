@@ -31,7 +31,7 @@
             android:background="@drawable/button_circle"
             android:gravity="center"
             android:paddingStart="30dp"
-            android:text="Today"
+            android:text="Employee List"
             android:textStyle="bold"
             app:backgroundTint="@color/green"
             app:layout_constraintBottom_toBottomOf="parent"
