@@ -16,15 +16,17 @@ class EmployeeViewModel(application: Application) : AndroidViewModel(application
     private val repository: EmployeeRepository = EmployeeRepository(EmployeeDatabase.getDatabase(application).employeeDao())
     private val employeeDao: EmployeeDao = EmployeeDatabase.getDatabase(application).employeeDao()
     val allEmployees: LiveData<List<Employee>> = employeeDao.getAllEmployees()
+    var presentEmployees: LiveData<List<Employee>> = employeeDao.getPresentEmployees()
 
-
-    fun insertEmployee(name: String) = viewModelScope.launch {
-        val newEmployee = Employee(name = name)
-        repository.insert(newEmployee)
-    }
     fun addEmployee(employee: Employee) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insert(employee)
+        }
+    }
+
+    fun updateEmployee(employee: Employee) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.update(employee)
         }
     }
 }

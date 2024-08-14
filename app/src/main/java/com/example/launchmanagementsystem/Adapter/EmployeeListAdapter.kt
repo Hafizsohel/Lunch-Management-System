@@ -1,5 +1,6 @@
 package com.example.launchmanagementsystem.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ class EmployeeListAdapter(
             val isChecked = holder.checkPresent.isChecked
             val updatedEmployee = currentEmployee.copy(isPresent = isChecked)
             employeeViewModel.addEmployee(updatedEmployee)
+             Log.d(TAG, "onBindViewHolder: Employee ${currentEmployee.name} is present: $isChecked")
         }
     }
     override fun getItemCount(): Int = employees.size

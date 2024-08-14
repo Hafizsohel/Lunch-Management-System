@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -61,14 +62,14 @@
             android:id="@+id/titleEmployeePresence"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Employee Present List:"
+            android:text="Present Employee List:"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:paddingBottom="8dp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewEmployeePresence"
+            android:id="@+id/recyclerViewEmployeePresent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/present_name_list" />

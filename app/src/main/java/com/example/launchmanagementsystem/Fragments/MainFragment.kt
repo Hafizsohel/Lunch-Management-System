@@ -35,6 +35,14 @@ class MainFragment : Fragment() {
                 .commit()
 
         }
+
+
+        binding.btnAttendanceList.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.FrameLayoutID, EmployeePresentFragment())
+                .addToBackStack(null)
+                .commit()
+        }
         return binding.root
     }
 }

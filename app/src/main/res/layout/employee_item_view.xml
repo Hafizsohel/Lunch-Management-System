@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -30,17 +31,15 @@
         android:layout_margin="2dp"
         />
 
-
     <CheckBox
         android:id="@+id/checkPresent"
-        android:layout_width="114dp"
-        android:layout_height="49dp"
-        android:buttonTint="@color/green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Present"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
 
 
 
