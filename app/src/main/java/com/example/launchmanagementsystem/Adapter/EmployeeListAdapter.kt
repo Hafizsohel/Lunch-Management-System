@@ -11,8 +11,6 @@ import com.example.launchmanagementsystem.Model.Employee
 import com.example.launchmanagementsystem.R
 import com.example.launchmanagementsystem.ViewModel.EmployeeViewModel
 
-private const val TAG = "EmployeeAdapter"
-
 class EmployeeListAdapter(
     private val employeeViewModel: EmployeeViewModel
 ) : RecyclerView.Adapter<EmployeeListAdapter.EmployeeViewHolder>() {
@@ -38,7 +36,6 @@ class EmployeeListAdapter(
             val isChecked = holder.checkPresent.isChecked
             val updatedEmployee = currentEmployee.copy(isPresent = isChecked)
             employeeViewModel.addEmployee(updatedEmployee)
-             Log.d(TAG, "onBindViewHolder: Employee ${currentEmployee.name} is present: $isChecked")
         }
     }
     override fun getItemCount(): Int = employees.size

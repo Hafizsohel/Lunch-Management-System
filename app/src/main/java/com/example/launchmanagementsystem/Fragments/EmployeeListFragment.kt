@@ -1,6 +1,5 @@
 package com.example.launchmanagementsystem.Fragments
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import com.example.launchmanagementsystem.R
 import com.example.launchmanagementsystem.ViewModel.EmployeeViewModel
 import com.example.launchmanagementsystem.databinding.FragmentEmployeeListBinding
 
-private const val TAG = "EmployeeListFragment"
 class EmployeeListFragment : Fragment() {
 
     private lateinit var binding: FragmentEmployeeListBinding
@@ -37,17 +35,21 @@ class EmployeeListFragment : Fragment() {
         binding.recyclerViewEmployeePresent.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewEmployeePresent.adapter = presentEmployeeAdapter
 
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
         employeeViewModel.allEmployees.observe(viewLifecycleOwner) { employees ->
             employees?.let {
                 employeeListAdapter.setEmployees(it)
-                Log.d(TAG, "Employees fetched and set in adapter: $it")
+                binding.titleEmployeeNames.text = "Employee Names List: ( Total = ${it.size} )"
             }
         }
 
         employeeViewModel.presentEmployees.observe(viewLifecycleOwner) { employees ->
             employees?.let {
                 presentEmployeeAdapter.setEmployees(it)
-                Log.d(TAG, "Present employees fetched and set in adapter: $it")
+                binding.titleEmployeePresent.text = "Present Employee List: ( Total = ${it.size} )"
             }
         }
 
@@ -56,7 +58,6 @@ class EmployeeListFragment : Fragment() {
                 .replace(R.id.FrameLayoutID, MainFragment())
                 .commit()
         }
-
         return binding.root
     }
 }

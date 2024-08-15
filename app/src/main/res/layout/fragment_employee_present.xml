@@ -5,10 +5,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbarPresent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/green"
@@ -17,67 +18,47 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:title="Present Employee List"
-            app:titleTextColor="@color/white" />
+            app:titleTextColor="@color/white"
+            app:navigationIcon="@drawable/back_button"/>
 
         <TextView
-            android:id="@+id/scrumDate"
+            android:id="@+id/todayDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Scrum Date: 6-Aug-24"
+            android:hint="Attendance Date: 6-Aug-24"
             android:textStyle="bold"
+            android:background="@color/light_grey"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:padding="16dp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toBottomOf="@id/toolbarPresent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/employeeNamesSection"
+
+        <TextView
+            android:id="@+id/titleEmployeePresent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Present Employee List:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/todayDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/presentRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/scrumDate"
+            android:paddingStart="12dp"
+            app:layout_constraintTop_toBottomOf="@id/titleEmployeePresent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:padding="16dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/titleEmployeePresent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Present Employee List:"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:paddingBottom="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/employeeCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/titleEmployeePresent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/presentRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:listitem="@layout/present_name_list"/>
-        </LinearLayout>
+            app:layout_constraintBottom_toTopOf="@id/btnShare"
+            tools:listitem="@layout/present_name_list"/>
 
         <Button
             android:id="@+id/btnShare"

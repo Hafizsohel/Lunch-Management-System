@@ -25,7 +25,7 @@
             app:tint="@android:color/white" />
 
         <Button
-            android:id="@+id/btnToday"
+            android:id="@+id/btnList"
             android:layout_width="220dp"
             android:layout_height="50dp"
             android:background="@drawable/button_circle"
@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnToday"
+            app:layout_constraintTop_toBottomOf="@id/btnList"
             app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

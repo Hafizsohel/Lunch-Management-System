@@ -11,11 +11,9 @@ import com.example.launchmanagementsystem.R
 import com.example.launchmanagementsystem.ViewModel.EmployeeViewModel
 import com.example.launchmanagementsystem.databinding.FragmentMainBinding
 
-private const val TAG = "MainFragment"
 class MainFragment : Fragment() {
-    private lateinit var binding:FragmentMainBinding
+    private lateinit var binding: FragmentMainBinding
     private lateinit var employeeViewModel: EmployeeViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,14 +26,12 @@ class MainFragment : Fragment() {
             dialogFragment.show(parentFragmentManager, "CustomDialogFragment")
         }
 
-        binding.btnToday.setOnClickListener {
+        binding.btnList.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.FrameLayoutID, EmployeeListFragment())
                 .addToBackStack(null)
                 .commit()
-
         }
-
 
         binding.btnAttendanceList.setOnClickListener {
             parentFragmentManager.beginTransaction()

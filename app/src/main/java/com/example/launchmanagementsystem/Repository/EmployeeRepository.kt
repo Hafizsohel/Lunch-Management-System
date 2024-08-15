@@ -8,12 +8,4 @@ class EmployeeRepository(private val employeeDao: EmployeeDao) {
     suspend fun insert(employee: Employee) {
         employeeDao.insert(employee)
     }
-
-    suspend fun update(employee: Employee) {
-        employeeDao.update(employee)
-    }
-
-    fun getPresentEmployees(): LiveData<List<Employee>> {
-        return employeeDao.getPresentEmployees()
-    }
 }

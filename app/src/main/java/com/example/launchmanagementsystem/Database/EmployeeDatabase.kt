@@ -8,7 +8,6 @@ import com.example.launchmanagementsystem.Model.Employee
 
 @Database(entities = [Employee::class], version = 1)
 abstract class EmployeeDatabase : RoomDatabase() {
-
     abstract fun employeeDao(): EmployeeDao
 
     companion object {

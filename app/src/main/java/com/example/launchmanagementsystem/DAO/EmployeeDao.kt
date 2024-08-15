@@ -13,8 +13,6 @@ interface EmployeeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(employee: Employee)
 
-    @Update
-    suspend fun update(employee: Employee)
     @Query("SELECT * FROM employees")
     fun getAllEmployees(): LiveData<List<Employee>>
 

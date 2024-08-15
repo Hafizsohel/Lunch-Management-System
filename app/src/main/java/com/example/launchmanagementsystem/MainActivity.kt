@@ -7,7 +7,6 @@ import com.example.launchmanagementsystem.databinding.ActivityMainBinding
 
 import com.example.launchmanagementsystem.Fragments.MainFragment
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {

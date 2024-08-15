@@ -23,10 +23,4 @@ class EmployeeViewModel(application: Application) : AndroidViewModel(application
             repository.insert(employee)
         }
     }
-
-    fun updateEmployee(employee: Employee) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.update(employee)
-        }
-    }
 }
